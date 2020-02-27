@@ -1,0 +1,10 @@
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+.sonarlint/
+
+# Maven
+log/
+target/
