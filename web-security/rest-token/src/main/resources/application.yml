@@ -1,18 +1,5 @@
 server:
-   port: 8443
-   servlet:
-      session:
-         timeout: 1m
-         cookie:
-            http-only: true
-            secure: true
-            max-age: 1m
-            
+   port: 8443            
 spring:
-   profiles.active: basic, ssl, oauth2
-   security:
-      user:
-         name: "client"
-         password: "password"   
-         roles: "USER"
+   profiles.active: ssl, oauth2
                  

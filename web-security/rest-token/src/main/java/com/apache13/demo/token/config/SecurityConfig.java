@@ -1,14 +1,11 @@
-package com.apache13.demo.session.config;
+package com.apache13.demo.token.config;
 
-import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 @EnableWebSecurity
-@Profile("basic")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
@@ -17,7 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.sessionManagement()
 		.sessionFixation().newSession()
 		//.sessionFixation().migrateSession()
-		.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
 		.authorizeRequests()
 		.antMatchers("/api/admin").authenticated()

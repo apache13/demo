@@ -1,4 +1,4 @@
-package com.apache13.demo.session.dto;
+package com.apache13.demo.token.dto;
 
 import java.time.Duration;
 import java.time.Instant;

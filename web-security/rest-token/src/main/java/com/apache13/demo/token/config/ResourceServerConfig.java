@@ -1,4 +1,4 @@
-package com.apache13.demo.session.config;
+package com.apache13.demo.token.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

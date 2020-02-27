@@ -1,4 +1,4 @@
-package com.apache13.demo.session;
+package com.apache13.demo.token;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
