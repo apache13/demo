@@ -13,14 +13,14 @@ import com.apache13.demo.session.dto.SessionDto;
 @RequestMapping("/api")
 public class ApiController {
 
-	public static final String WMSL_VISITED = "WMSL_VISITED";
+	public static final String VISITED = "VISITED";
 
 	private SessionDto counter(HttpSession session) {
-		if (session.getAttribute(WMSL_VISITED) == null) {
-			session.setAttribute(WMSL_VISITED, 1);
+		if (session.getAttribute(VISITED) == null) {
+			session.setAttribute(VISITED, 1);
 		} else {
-			int count = Integer.parseInt(session.getAttribute(WMSL_VISITED).toString()) + 1;
-			session.setAttribute(WMSL_VISITED, count);
+			int count = Integer.parseInt(session.getAttribute(VISITED).toString()) + 1;
+			session.setAttribute(VISITED, count);
 
 		}
 		return new SessionDto(session);

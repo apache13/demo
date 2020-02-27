@@ -9,7 +9,7 @@ server:
             max-age: 1m
             
 spring:
-   profiles.active: basic, ssl
+   profiles.active: ssl
    security:
       user:
          name: "client"
