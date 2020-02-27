@@ -12,6 +12,6 @@ public class HomeController {
 
 	@GetMapping("/message")
 	public Message home() {
-		return new Message("Hello ...");
+		return new Message("Hello World");
 	}
 }

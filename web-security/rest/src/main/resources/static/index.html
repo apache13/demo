@@ -12,13 +12,14 @@
 						.parse(this.response).content;
 			}
 		};
-		xhttp.open("GET", "http://localhost:8081/api/message", true);
+		xhttp.open("GET", "http://localhost:8080/api/message", true);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 	}
 </script>
 </head>
 <body onload="show()">
+	<h1>Index</h1>
 	<p id="content" />
 </body>
 </html>
