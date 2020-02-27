@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<script type="text/javascript">
+	function show() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("content").innerHTML = JSON
+						.parse(this.response).content;
+			}
+		};
+		xhttp.open("GET", "http://localhost:8081/api/message", true);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+	}
+</script>
+</head>
+<body onload="show()">
+	<p id="content" />
+</body>
+</html>

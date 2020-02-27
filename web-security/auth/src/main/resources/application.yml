@@ -1,0 +1,20 @@
+server:
+   port: 9000
+spring:
+   security:
+      user:
+         name: "enduser"
+         password: "password"   
+         roles: "USER"
+security:
+   oauth2:
+      client:        
+         client-id: "client"
+         client-secret: "password"
+         authorized-grant-types: client_credentials, authorization_code, refresh_token, password
+         scope: openid         
+         access-token-validity-seconds: 60
+         refresh-token-validity-seconds: 600                 
+      authorization:         
+         jwt:
+            key-value: "12345"            
