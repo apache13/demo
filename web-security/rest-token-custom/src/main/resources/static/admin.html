@@ -13,6 +13,11 @@
 		};
 		xhttp.open("GET", "https://localhost:8443/api/admin", true);
 		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp
+				.setRequestHeader(
+						"Authorization",
+						"bearer "
+								+ "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdWIiLCJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJlbmR1c2VyIiwic2NvcGUiOlsib3BlbmlkIl0sImlzcyI6ImlzcyIsImV4cCI6MTU4MzIxMTQ4NSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjE1YmUyMDk0LTI2YjktNGMwMi1hNzA4LWMzZGMxM2I5N2YzNCIsImNsaWVudF9pZCI6ImNsaWVudCIsIm9wdGlvbiI6eyJvdGhlcl9pZCI6OTl9fQ.ZvaQoNS_ktHvSQK3fh-PvgRaf4fgpW31EhNU0SWsiFOloyD3LhzPraJ5IK5lKHnuE68YXc7y6bkzv8YfK6I28wgUSCZrZ3GxUx-EI9JOtK_AXmWkAelL3ozyzvPnfHnCE5CdI7d3XKD739eQaJUXtK4wa4LthSnBBEVkodLE-j79UjatuuqIHKMLfjoSUKxssD8dRUkfLsGNwZ6ekLP-wW1xvIIhiVNedwkvnmEiCVwUFtXUzezu9r6AuEM6aNdyHW11urUWq49sRVtgHY1o6xE4PBhB0DUe8whLYUAZbvM8gnke4Dg5GVMj89YMAvpLeg_w_YWbC1VCuNeFL3qCcg");
 		xhttp.send();
 	}
 </script>

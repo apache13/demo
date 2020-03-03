@@ -1,8 +1,13 @@
 package com.apache13.demo.session.config;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -37,13 +42,17 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	}
 
 	@Bean
-	public JwtAccessTokenConverter accessTokenConverter() {		
+	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new CustomAccessTokenConverter();
-		converter.setSigningKey("12345");
-		//KeyPair keyPair = new KeyStoreKeyFactory(new ClassPathResource("jwt/jwt.p12"), "password".toCharArray())
-		//		.getKeyPair("jwt", "password".toCharArray());
-		//converter.setKeyPair(keyPair);
+		ClassPathResource resource = new ClassPathResource("jwt/jwt.pem");
+		String publicKey = null;
+		try {
+			publicKey = IOUtils.toString(resource.getInputStream(), StandardCharsets.UTF_8.name());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		converter.setVerifierKey(publicKey);
 		return converter;
-		
+
 	}
 }

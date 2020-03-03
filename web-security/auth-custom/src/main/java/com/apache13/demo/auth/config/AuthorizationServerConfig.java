@@ -38,20 +38,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
 				.withClient("client")
-				.secret(passwordEncoder()
-				.encode("password"))
+				.secret(passwordEncoder().encode("password"))
 				.authorizedGrantTypes("password", "refresh_token")
 				.scopes("openid")
-				.accessTokenValiditySeconds(60)
-				.refreshTokenValiditySeconds(120);
+				.accessTokenValiditySeconds(600)
+				.refreshTokenValiditySeconds(1200);
 	}
 
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new CustomAccessTokenConverter();
-		converter.setSigningKey("12345");
-		//KeyPair keyPair = new KeyStoreKeyFactory(new ClassPathResource("jwt/jwt.p12"), "password".toCharArray())
-		//		.getKeyPair("jwt", "password".toCharArray());
-		//converter.setKeyPair(keyPair);
+		// converter.setSigningKey("12345");
+		KeyPair keyPair = new KeyStoreKeyFactory(new ClassPathResource("jwt/jwt.p12"), "password".toCharArray())
+				.getKeyPair("jwt", "password".toCharArray());
+		converter.setKeyPair(keyPair);
 		return converter;
 	}
 

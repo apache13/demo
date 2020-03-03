@@ -1,7 +1,7 @@
 server:
    port: 9000
 spring:
-   profiles.active: ssl, oauth2
+   profiles.active: ssl
    security:
       user:
          name: "enduser"

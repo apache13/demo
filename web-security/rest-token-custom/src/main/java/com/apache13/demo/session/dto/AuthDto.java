@@ -1,8 +1,11 @@
 package com.apache13.demo.session.dto;
 
+import java.util.Collection;
 import java.util.Map;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 
 public class AuthDto {
@@ -10,19 +13,24 @@ public class AuthDto {
 	private String tokenType;
 	private String name;
 	private Map<String, Object> payload;
-
-	private Authentication authentication;
+	private Collection<? extends GrantedAuthority> grantedAuthorities;
 
 	public AuthDto(Authentication authentication) {
-		Object details = authentication.getDetails();
-		if (details instanceof OAuth2AuthenticationDetails) {
-			OAuth2AuthenticationDetails oAuth2AuthenticationDetails = (OAuth2AuthenticationDetails) details;
-			this.tokenValue = oAuth2AuthenticationDetails.getTokenValue();
-			this.tokenType = oAuth2AuthenticationDetails.getTokenType();
-			this.payload = (Map<String, Object>) oAuth2AuthenticationDetails.getDecodedDetails();
+		if (authentication != null) {
+			if (authentication instanceof OAuth2Authentication) {
+				OAuth2Authentication oauth2 = (OAuth2Authentication) authentication;
+				this.name = oauth2.getName();
+				this.grantedAuthorities = oauth2.getAuthorities();
+
+				if (authentication.getDetails() instanceof OAuth2AuthenticationDetails) {
+					OAuth2AuthenticationDetails oauth2Details = (OAuth2AuthenticationDetails) authentication
+							.getDetails();
+					this.tokenValue = oauth2Details.getTokenValue();
+					this.tokenType = oauth2Details.getTokenType();
+					this.payload = (Map<String, Object>) oauth2Details.getDecodedDetails();
+				}
+			}
 		}
-		this.name = authentication.getName();
-		//this.authentication = authentication;
 	}
 
 	public String getTokenValue() {
@@ -49,20 +57,20 @@ public class AuthDto {
 		this.name = name;
 	}
 
-	public Authentication getAuthentication() {
-		return authentication;
-	}
-
-	public void setAuthentication(Authentication authentication) {
-		this.authentication = authentication;
-	}
-
 	public Map<String, Object> getPayload() {
 		return payload;
 	}
 
 	public void setPayload(Map<String, Object> payload) {
 		this.payload = payload;
+	}
+
+	public Collection<? extends GrantedAuthority> getGrantedAuthorities() {
+		return grantedAuthorities;
+	}
+
+	public void setGrantedAuthorities(Collection<? extends GrantedAuthority> grantedAuthorities) {
+		this.grantedAuthorities = grantedAuthorities;
 	}
 
 }
