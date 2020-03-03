@@ -13,12 +13,17 @@
 		};
 		xhttp.open("GET", "https://localhost:8443/api/admin", true);
 		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp
+				.setRequestHeader(
+						"Authorization",
+						"bearer "
+								+ "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODMyMTQzOTIsInVzZXJfbmFtZSI6ImVuZHVzZXIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiNWZiMTU5ZmUtYmE4My00YzMwLWExMjAtZjZmYjA5YTIyYjA5IiwiY2xpZW50X2lkIjoiY2xpZW50Iiwic2NvcGUiOlsib3BlbmlkIl19.QmxcT4ioU2-tt7wFUVTcAynMwdOSR_gckXMBBbFf2WA");
 		xhttp.send();
 	}
 </script>
 </head>
 <body onload="show()">
 	<h1>Admin</h1>
-	<p id="content" />
+	<p id="content"></p>
 </body>
 </html>

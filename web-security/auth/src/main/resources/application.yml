@@ -11,10 +11,10 @@ security:
       client:        
          client-id: "client"
          client-secret: "password"
-         authorized-grant-types: client_credentials, authorization_code, refresh_token, password
+         authorized-grant-types: refresh_token, password
          scope: openid         
-         access-token-validity-seconds: 60
-         refresh-token-validity-seconds: 600                 
+         access-token-validity-seconds: 6000
+         refresh-token-validity-seconds: 6000                 
       authorization:         
          jwt:
             key-value: "12345"            

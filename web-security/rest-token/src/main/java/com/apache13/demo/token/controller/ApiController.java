@@ -1,39 +1,24 @@
 package com.apache13.demo.token.controller;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.ui.Model;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.apache13.demo.token.dto.SessionDto;
+import com.apache13.demo.token.dto.AuthDto;
 
 @RestController
 @RequestMapping("/api")
 public class ApiController {
 
-	public static final String WMSL_VISITED = "WMSL_VISITED";
-
-	private SessionDto counter(HttpSession session) {
-		if (session.getAttribute(WMSL_VISITED) == null) {
-			session.setAttribute(WMSL_VISITED, 1);
-		} else {
-			int count = Integer.parseInt(session.getAttribute(WMSL_VISITED).toString()) + 1;
-			session.setAttribute(WMSL_VISITED, count);
-
-		}
-		return new SessionDto(session);
-	}
-
 	@GetMapping(value = "/anonymous")
-	public SessionDto anonymous(HttpSession session, Model model) {
-		return counter(session);
+	public AuthDto anonymous(Authentication authentication) {
+		return new AuthDto(authentication);
 	}
 
 	@GetMapping(value = "/admin")
-	public SessionDto admin(HttpSession session, Model model) {
-		return counter(session);
+	public AuthDto admin(Authentication authentication) {
+		return new AuthDto(authentication);
 	}
 
 }
